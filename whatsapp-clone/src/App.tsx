@@ -19,6 +19,10 @@ function App() {
   const [phoneNumberChat , setPhoneNumberChat] = useState('')
   const [socketIdChat , setSocketIdChat] = useState('')
   const [mySocketId , setMySocketId] = useState('')
+  const [myFriendsList , setMyFriendsList] = useState('')
+  const [myAvatar , setMyAvatar] = useState('')
+
+
   const updateUser = async (socketId:String)=> {
     let res = await fetch(uri_ws + '/userw' , {
       method: 'PUT',
@@ -26,26 +30,49 @@ function App() {
       headers:{'content-type':'application/json'}
     });
     let data = await res.json()
+    setMySocketId(data.socketId);
     console.log('Data : ');
     console.log(data);
+    getUserInfo(myPhoneNumber);
+
     
   }
-
+  const getUserInfo = async (Phone:any)=> {
+   
+    let res = await fetch(uri_ws + '/userw/' +Phone , {
+      method: 'GET',
+      headers:{'content-type':'application/json'}
+    });
+    let data = await res.json()
+    console.log(data.socketId);
+    console.log(data.phoneNumber);
+    console.log(myFriendsList);
+    setPhoneNumberChat(data.phoneNumber)
+    setSocketIdChat(data.socketId)
+    setMyFriendsList(data.friendsList)
+    setMyAvatar(data.avatarImage)
+  }
   const getUser = async ()=> {
-    let number = prompt('Type phone number' , '')
+      
+    let  number = prompt('Type phone number' , '')
+   
     let res = await fetch(uri_ws + '/userw/' +number , {
       method: 'GET',
       headers:{'content-type':'application/json'}
     });
     let data = await res.json()
     console.log(data.socketId);
+    console.log(data.phoneNumber);
+    console.log(myFriendsList);
     setPhoneNumberChat(data.phoneNumber)
     setSocketIdChat(data.socketId)
+    setMyFriendsList(data.friendsList)
+    setMyAvatar(data.avatarImage)
   }
 
   const sendMsg = (e:any) => {
     if(e.key == 'Enter'){
-      socket.emit('messages' , {socketId:socketIdChat , message:message, from: {
+      socket.emit('messages' , {socketId:socketIdChat , phoneNumber:phoneNumberChat, message:message, from: {
         socketId: mySocketId , myPhoneNumber:myPhoneNumber 
       }})
       setMessage('')
@@ -76,7 +103,7 @@ function App() {
   var trinity = 'http://2.bp.blogspot.com/-pFh5cVd7mlI/UgQnNeh335I/AAAAAAAAM1s/6Io8KEtQGGA/s180/Trinity.jpg';
   var morpheus = 'https://www.listchallenges.com/f/items/18b1a46f-36c9-4af4-aedd-faae3fcfed4b.jpg';
   var smith = 'https://www.monologuedb.com/wp-content/uploads/2011/04/Hugo-Weaving-Agent-Smith-The-Matrix-150x150.gif';
-  var neo = 'http://www.avatarstock.com/img/matrix-avatar-1487_15827.jpg';
+  //var neo = 'http://www.avatarstock.com/img/matrix-avatar-1487_15827.jpg';
 
 
   return (
@@ -85,7 +112,7 @@ function App() {
       <div className='app-body'>
         <div className='sidebar'>
           <div className='sidebar-header'>
-            <Avatar src={neo}/>
+            <Avatar src={myAvatar}/>
             <div className='sidebar-header-right'>
               <DonutLargeIcon color='action'/>
               <span onClick={getUser}>
@@ -101,9 +128,9 @@ function App() {
             </div>
           </div>
           <div className='sidebar-list'>
-            <ChatItem title='Trinnity' info='hello' avatar={trinity}/>
-            <ChatItem title='Morpheus' info='hello friend' avatar={morpheus}/>
-            <ChatItem title='Smith' info='hello ' avatar={smith}/>
+          <span ><ChatItem title='Trinnity' info='hello' avatar={trinity}/></span> 
+          <span ><ChatItem title='Morpheus' info='hello friend' avatar={morpheus}/></span> 
+          <span ><ChatItem title='Smith' info='hello ' avatar={smith}/></span> 
           </div>
         </div>
         <div className='chat'>
