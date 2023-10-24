@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+}
+
+.chat-item{
+    display: grid;
+    grid-template-columns: 8px 40px auto;
+    
+}
+.item-info{
+    margin-left: 16px;
+    border-bottom: 1px solid #e9edef;
+}
+
+.title{
+    font-size: 16;
+    color: #111b21;
+}
+
+.info{
+    color: #6a7b84;
+    font-size: 12px;
+}

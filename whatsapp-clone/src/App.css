@@ -1,0 +1,122 @@
+.app{
+  display: grid;
+  background-color: #e1e0dd;
+  width: 100vw;
+  height: 100vh;
+  place-items: center;
+}
+
+.app-body{
+  background-color: #ffffff;
+  width: 90%;
+  height: 90%;
+  box-shadow:  4px 4px 4px darkgray;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+.sidebar-header{
+  display: grid;
+  grid-template-columns: 80% 20%;
+  height: 60px;
+  align-items: center;
+  padding-left: 8px;
+  background-color: #f0f2f5;
+}
+.sidebar-header-right {
+  display: flex;
+  float: right;
+  
+}
+.sidebar-header-right svg{
+  margin-left: 8px;
+  display: flex;
+  float: right;
+  
+}
+
+.search-container{
+  margin: 8px;
+  background-color: #f0f2f5;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+}
+.search-container input{
+  border: 0px;
+  background-color: #f0f2f5;
+  outline: none;
+}
+.chat{
+  position: relative;
+  display: grid;
+  grid-template-rows: 60px auto 60px;
+}
+.bg-chat{
+  background-image: url('./assets/whatsapp_bg.png');
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #efeae2;
+  opacity: 0.4;
+}
+.chat-header{
+  position: relative;
+  background-color: #f0f2f5;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 40px auto 60px;
+  align-items: center;
+  padding-left: 16px;
+  border-left: 1px solid #d1d7db;
+}
+.chat-header-info{
+  margin-left: 16px;
+}
+.chat-header-right{
+  display: flex;
+}
+.chat-footer{
+  background-color: #f0f2f5;
+  position: relative;
+}
+.chat-footer{
+ 
+  display: grid;
+  grid-template-columns: 80px auto 40px;
+  align-items: center;
+  
+}
+
+.chat-footer-actions svg{
+  margin-left: 8px;
+}
+.chat-footer-input{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.chat-footer-input input{
+  width: 90%;
+  border:none;
+  padding:12px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.message-in{
+  position: absolute;
+  color: #ffffff;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.message-out{
+  position: absolute;
+  right: 0px;
+  background-color: #d9fdd3;
+  border-radius: 5px;
+
+}
