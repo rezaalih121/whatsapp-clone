@@ -9,7 +9,8 @@ import ChatItem from './chat-item';
 import io from 'socket.io-client';
 import { useEffect, useState } from 'react';
 
-const uri_ws = 'http://localhost:3000';
+//const uri_ws = 'http://localhost:3000';
+const uri_ws = 'http://localhost/api';
 const socket = io(uri_ws);
 
 const myPhoneNumber = prompt('your number?','')
@@ -31,6 +32,7 @@ function App() {
     });
     let data = await res.json()
     setMySocketId(data.socketId);
+    console.log('socketId : ' + data.socketId + '-------------------------------------------');
     console.log('Data : ');
     console.log(data);
     getUserInfo(myPhoneNumber);
@@ -49,6 +51,8 @@ function App() {
     console.log(myFriendsList);
     setPhoneNumberChat(data.phoneNumber)
     setSocketIdChat(data.socketId)
+
+
     setMyFriendsList(data.friendsList)
     setMyAvatar(data.avatarImage)
   }
@@ -66,8 +70,7 @@ function App() {
     console.log(myFriendsList);
     setPhoneNumberChat(data.phoneNumber)
     setSocketIdChat(data.socketId)
-    setMyFriendsList(data.friendsList)
-    setMyAvatar(data.avatarImage)
+
   }
 
   const sendMsg = (e:any) => {

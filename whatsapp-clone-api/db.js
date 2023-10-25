@@ -1,7 +1,7 @@
 const {Mongoose , Schema , model, default: mongoose} = require('mongoose');
 
-const uri_db = 'mongodb+srv://whatsappdb:password@/mongodb/whatsapp?retryWrites=true&w=majority'
-//const uri_db = 'mongodb+srv://whatsappdb:psZNJNSY30fxcCHA@cluster0.tp6azbm.mongodb.net/whatsapp?retryWrites=true&w=majority'
+//const uri_db = 'mongodb://mongo:27017'
+const uri_db = 'mongodb+srv://whatsappdb:psZNJNSY30fxcCHA@cluster0.tp6azbm.mongodb.net/whatsapp?retryWrites=true&w=majority'
 const UserwShema = new Schema({
     name:String,
     phoneNumber:String,

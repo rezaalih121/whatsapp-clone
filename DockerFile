@@ -2,9 +2,18 @@ FROM node:lts-alpine
 
 WORKDIR /whatsapp-clone-projet
 
-COPY whatsapp-clone
-COPY whatsapp-clone-api 
 
-RUN cd whatsapp-clone-api && npm install && npm run dev
-RUN cd whatsapp-clone && npm install && npm run build
+COPY /whatsapp-clone ./whatsapp-clone
+COPY /whatsapp-clone-api ./whatsapp-clone-api
 
+
+
+WORKDIR /whatsapp-clone-projet/whatsapp-clone 
+# RUN cd whatsapp-clone 
+RUN npm install
+RUN npm run build
+
+WORKDIR /whatsapp-clone-projet/whatsapp-clone-api 
+RUN npm install 
+# RUN npm run start
+CMD [ "node", "index.js" ]
