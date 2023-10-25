@@ -9,8 +9,9 @@ import ChatItem from './chat-item';
 import io from 'socket.io-client';
 import { useEffect, useState } from 'react';
 
-//const uri_ws = 'http://localhost:3000';
-const uri_ws = 'http://localhost/api';
+
+const uri_ws = 'http://localhost:3000';
+
 const socket = io(uri_ws);
 
 const myPhoneNumber = prompt('your number?','')
@@ -25,6 +26,8 @@ function App() {
 
 
   const updateUser = async (socketId:String)=> {
+    console.log('==========================updateUser');
+    
     let res = await fetch(uri_ws + '/userw' , {
       method: 'PUT',
       body:JSON.stringify({phoneNumber:myPhoneNumber,socketId:socketId}),
@@ -37,7 +40,6 @@ function App() {
     console.log(data);
     getUserInfo(myPhoneNumber);
 
-    
   }
   const getUserInfo = async (Phone:any)=> {
    
