@@ -5,7 +5,7 @@ WORKDIR /whatsapp-clone-projet
 
 COPY /whatsapp-clone ./whatsapp-clone
 COPY /whatsapp-clone-api ./whatsapp-clone-api
-COPY /whatsapp-clone/. /usr/share/nginx/html/
+
 
 
 WORKDIR /whatsapp-clone-projet/whatsapp-clone 
@@ -17,5 +17,3 @@ WORKDIR /whatsapp-clone-projet/whatsapp-clone-api
 RUN npm install 
 # RUN npm run start
 CMD [ "node", "index.js" ]
-
-EXPOSE 81
