@@ -1,4 +1,0 @@
-FROM nginx:latest
-# Copy source files to tomcat folder structure
-COPY /whatsapp-clone/dist/. /usr/share/nginx/html/
-
